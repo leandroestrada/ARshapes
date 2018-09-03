@@ -18,8 +18,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         
         sceneView.delegate = self
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene()
         sceneView.scene = scene
+        createShape()
+    }
+    
+    func createShape(){
+        
+        let pyramid = SCNPyramid(width: 0.2, height: 0.2, length: 0.2)
+        pyramid.firstMaterial?.diffuse.contents = UIColor.green
+        let pyramidNode = SCNNode(geometry: pyramid)
+        pyramidNode.position.z = -0.8
+        sceneView.scene.rootNode.addChildNode(pyramidNode)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
